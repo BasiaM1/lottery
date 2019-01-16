@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html {
+            font-family: arial;
+            background-color: rgb(163, 163, 194);
+
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 3px solid black;
+            padding: 10px 20px;
+            font-size: 20px;
+
+            transition: .3s;
+
+        }
+
+        button:hover {
+            background-color: black;
+            color: white;
+
+        }
+
+        div {
+            float: left;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: blueviolet;
+            margin: 10px;
+            line-height: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <button>Losuj</button>
+    <!-- <div>23</div> -->
+    <script>
+        const result = [];
+
+        const losowanie = function () {
+            if (result.length === 6) {
+                return;
+            }
+
+            //math random od 0 do 1 bez 1
+            const wynikLosowania = Math.floor(Math.random() * 49 + 1);
+            for (let i = 0; i < result.length; i++) {
+                if (wynikLosowania === result[i]) {
+                    return losowanie()
+                }
+            }
+
+            //tworzymy element div
+            const div = document.createElement("div");
+            div.textContent = wynikLosowania;
+            document.body.appendChild(div);
+            result.push(wynikLosowania); //dodajemy do tablicy(result)
+        }
+
+        // function losowanie(){
+
+        // }
+        //Pobranie elemntu na ktorym pracujemy
+        const button = document.querySelector("button");
+        //nasluchiwanie na zdarzenie w wypadku klikania
+        button.addEventListener("click", losowanie);
+    </script>
+</body>
+
+</html>
